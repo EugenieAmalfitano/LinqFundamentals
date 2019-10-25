@@ -6,7 +6,7 @@ namespace Introduction
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Linq Fundamentals - based on Pluralsight class by Scott Allen\n");
         }
     }
 }
