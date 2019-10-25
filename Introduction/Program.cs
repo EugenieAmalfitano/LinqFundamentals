@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Introduction
 {
@@ -10,7 +11,8 @@ namespace Introduction
         static void Main(string[] args)
         {
             string path = @"C:\windows";
-            ShowLargeFilesWithoutLinq(path);
+            ShowLargeFilesWithoutLinq(path); 
+            ShowLargeFilesWithLinq(path);
         }
         private static void ShowLargeFilesWithoutLinq(string path)
         {
@@ -24,6 +26,17 @@ namespace Introduction
                 Console.WriteLine($"{file.Name,-20} : {file.Length,10:N0}");
             }
             Console.WriteLine("\n* * *\n\n");
+        }
+        private static void ShowLargeFilesWithLinq(string path)
+        {
+            Console.WriteLine("WITH LINQ\n");
+            var query = from file in new DirectoryInfo(path).GetFiles()
+                        orderby file.Length descending
+                        select file;
+            foreach (var file in query.Take(5))
+            {
+                Console.WriteLine($"{file.Name,-20} : {file.Length,10:N0}");
+            }
         }
         public class FileInfoComparer : IComparer<FileInfo>
         {
