@@ -11,7 +11,7 @@ namespace Features
         static void Main(string[] args)
         {
             //  Query syntax
-            Console.WriteLine("Filtered Cities using method query syntax:");
+            Console.WriteLine("Filtered Cities using query syntax:");
             string[] cities = { "Boston", "Los Angeles", "Seattle", "London", "Hyderabad", "Melbourne" };
 
             IEnumerable<string> filteredCities =
@@ -48,7 +48,7 @@ namespace Features
             Console.WriteLine($"Method body syntax for Add X + Y : {addTemp(3, 4)}{Newline}");
 
             // ARRAY of developers
-            IEnumerable <Employee> developers = new Employee[]
+            IEnumerable<Employee> developers = new Employee[]
             {
                 new Employee { Id = 1, Name="Scott"},
                 new Employee { Id = 2, Name="Chris"}
@@ -86,9 +86,23 @@ namespace Features
             Console.WriteLine($"Number of Sales Employees: {sales.Count()}{Newline}");
 
             // Use Lambda Expression to filter Developers whose name is 5 characters long, sorted by name
-            Console.WriteLine("Developers whose name is 5 characters long: ");
-            foreach (var employee in developers.Where(e => e.Name.Length == 5 )
-                                               .OrderBy(e => e.Name)) // or .OrderByDescending
+            // "Method Syntax" - uses extension methods
+            Console.WriteLine("Developers whose name is 5 characters long (Method Syntax and Lambda Expressions): ");
+            var query = developers.Where(e => e.Name.Length == 5)
+                                  .OrderBy(e => e.Name) // or .OrderByDescending
+                                  .Select(e => e);      // almost a Noop but consistent with query syntax
+            foreach (var employee in query) 
+            {
+                Console.WriteLine(employee.Name);
+            }
+
+            // "Query Syntax" - keywords, not extension methods
+            Console.WriteLine(Newline + "Developers whose name is 5 characters long (Query Syntax): ");
+            var query2 = from developer in developers
+                         where developer.Name.Length == 5
+                         orderby developer.Name
+                         select developer;
+            foreach (var employee in query2)
             {
                 Console.WriteLine(employee.Name);
             }
