@@ -11,15 +11,27 @@ namespace Features
         static void Main(string[] args)
         {
 
+            // Lambda with one parameter
             Func<int, int> square = x => x * x;
 
             Console.WriteLine($"The square of 3: {square(3)}{Newline}");
 
+            // Lambda with two parameters
             Func<int, int, int> add = (x, y) => x + y;
 
-            Console.WriteLine($"Add X + Y: {add(5,6)}{Newline}");
-            Console.WriteLine($"The square of (5 + 6): {square(add(5,6))}{Newline}");
+            Console.WriteLine($"Add X + Y: {add(5, 6)}{Newline}");
 
+            // Nested Lambda call
+            Console.WriteLine($"The square of (5 + 6): {square(add(5, 6))}{Newline}");
+
+            // Lambda can also include a method body with curly braces (less often used)
+            Func<int, int, int> addTemp = (x, y) =>
+            {
+                int temp = x + y;
+                return temp;
+            };
+
+            Console.WriteLine($"Method body syntax for Add X + Y : {addTemp(3, 4)}{Newline}");
 
             // ARRAY of developers
             IEnumerable <Employee> developers = new Employee[]
@@ -37,7 +49,7 @@ namespace Features
 
 
             // Iterate through developers array
-
+            Console.WriteLine("Developers Array using IEnumerable,  IEnumerator");
             IEnumerator<Employee> enumerator = developers.GetEnumerator();
             while (enumerator.MoveNext())
             {
@@ -48,6 +60,7 @@ namespace Features
             Console.WriteLine($"Number of Developers: {developers.Count()}{Newline}");
 
             // Iterate through sales list
+            Console.WriteLine("Sales List using IEnumerable,  IEnumerator");
             enumerator = sales.GetEnumerator();
             while (enumerator.MoveNext())
             {
