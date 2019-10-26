@@ -7,10 +7,16 @@ namespace Features
 {
     class Program
     {
+        static readonly string Newline = "\n";
         static void Main(string[] args)
         {
+
+            Func<int, int> square = x => x * x;
+
+            Console.WriteLine($"The square of 3: {square(3)}{Newline}");
+
             // ARRAY of developers
-            IEnumerable<Employee> developers = new Employee[]
+            IEnumerable <Employee> developers = new Employee[]
             {
                 new Employee { Id = 1, Name="Scott"},
                 new Employee { Id = 2, Name="Chris"}
@@ -33,7 +39,7 @@ namespace Features
             }
 
             // Count() is one of the many extension methods in System.Linq.  
-            Console.WriteLine("Number of Developers: " + developers.Count() + "\n");
+            Console.WriteLine($"Number of Developers: {developers.Count()}{Newline}");
 
             // Iterate through sales list
             enumerator = sales.GetEnumerator();
@@ -42,13 +48,13 @@ namespace Features
                 Console.WriteLine(enumerator.Current.Name);
             }
 
-            Console.WriteLine("Number of Sales Employees: " + sales.Count() + "\n");
+            Console.WriteLine($"Number of Sales Employees: {sales.Count()}{Newline}");
 
             // Use Lambda Expression to filter Developers whose name starts with S
-            Console.WriteLine("Developers whose name starts with S:\n");
+
             foreach (var employee in developers.Where(e => e.Name.StartsWith("S")))
             {
-                Console.WriteLine(employee.Name);
+                Console.WriteLine($"Developers whose name starts with S: {Newline}{employee.Name}");
             }
 
         }
