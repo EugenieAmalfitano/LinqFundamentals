@@ -47,6 +47,8 @@ namespace Features
                 new Employee {Id = 3, Name = "Alex"}
             };
 
+            Action<string> write = x => Console.WriteLine(x);
+            write($"Lambda Action<> syntax can be used for a function that always returns void (no return type).{Newline}");
 
             // Iterate through developers array
             Console.WriteLine("Developers Array using IEnumerable,  IEnumerator");
