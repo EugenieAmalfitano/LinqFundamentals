@@ -46,7 +46,7 @@ namespace Features
 
             // Use Lambda Expression to filter Developers whose name starts with S
             Console.WriteLine("Developers whose name starts with S:\n");
-            foreach (var employee in developers.Where(employee => employee.Name.StartsWith("S")))
+            foreach (var employee in developers.Where(e => e.Name.StartsWith("S")))
             {
                 Console.WriteLine(employee.Name);
             }
