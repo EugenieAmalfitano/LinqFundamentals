@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Features.Linq;
+using System.Linq;
 
 
 namespace Features
@@ -31,7 +31,7 @@ namespace Features
                 Console.WriteLine(enumerator.Current.Name);
             }
 
-            // Count() is an extension method in MyLinq.cs
+            // Count() is one of the many extension methods in System.Linq.  
             Console.WriteLine("Number of Developers: " + developer.Count() + "\n");
 
             // Iterate through sales list
