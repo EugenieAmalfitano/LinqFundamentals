@@ -71,11 +71,12 @@ namespace Features
 
             Console.WriteLine($"Number of Sales Employees: {sales.Count()}{Newline}");
 
-            // Use Lambda Expression to filter Developers whose name starts with S
-
-            foreach (var employee in developers.Where(e => e.Name.StartsWith("S")))
+            // Use Lambda Expression to filter Developers whose name is 5 characters long, sorted by name
+            Console.WriteLine("Developers whose name is 5 characters long: ");
+            foreach (var employee in developers.Where(e => e.Name.Length == 5 )
+                                               .OrderBy(e => e.Name)) // or .OrderByDescending
             {
-                Console.WriteLine($"Developers whose name starts with S: {Newline}{employee.Name}");
+                Console.WriteLine(employee.Name);
             }
 
         }
