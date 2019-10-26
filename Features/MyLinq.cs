@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Features
+namespace Features.Linq
 {
    public static class MyLinq
     {
