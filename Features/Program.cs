@@ -10,11 +10,25 @@ namespace Features
         static readonly string Newline = "\n";
         static void Main(string[] args)
         {
+            //  Query syntax
+            Console.WriteLine("Filtered Cities using method query syntax:");
+            string[] cities = { "Boston", "Los Angeles", "Seattle", "London", "Hyderabad", "Melbourne" };
+
+            IEnumerable<string> filteredCities =
+                from city in cities
+                where city.StartsWith("L") && city.Length < 15
+                orderby city descending
+                select city;
+
+            foreach (string city in filteredCities)
+            {
+                Console.WriteLine($"{city}");
+            }
 
             // Lambda with one parameter
             Func<int, int> square = x => x * x;
 
-            Console.WriteLine($"The square of 3: {square(3)}{Newline}");
+            Console.WriteLine($"{Newline}The square of 3: {square(3)}{Newline}");
 
             // Lambda with two parameters
             Func<int, int, int> add = (x, y) => x + y;
