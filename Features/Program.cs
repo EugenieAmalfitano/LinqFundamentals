@@ -35,7 +35,7 @@ namespace Features
             // Count() is one of the many extension methods in System.Linq.  
             Console.WriteLine("Number of Developers: " + developers.Count() + "\n");
 
-     
+
 
             // Iterate through sales list
             enumerator = sales.GetEnumerator();
@@ -48,16 +48,15 @@ namespace Features
 
             // Display Developers whose name starts with S
             Console.WriteLine("Developers whose name starts with S:\n");
-            foreach (var employee in developers.Where(NameStartsWithS))
+            foreach (var employee in developers.Where(
+                        delegate (Employee employee)
+                        {
+                            return employee.Name.StartsWith("S");
+                        }))
             {
                 Console.WriteLine(employee.Name);
             }
 
-        }
-
-        private static bool NameStartsWithS(Employee employee)
-        {
-            return employee.Name.StartsWith("S");
         }
     }
 }
