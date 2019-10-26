@@ -15,6 +15,12 @@ namespace Features
 
             Console.WriteLine($"The square of 3: {square(3)}{Newline}");
 
+            Func<int, int, int> add = (x, y) => x + y;
+
+            Console.WriteLine($"Add X + Y: {add(5,6)}{Newline}");
+            Console.WriteLine($"The square of (5 + 6): {square(add(5,6))}{Newline}");
+
+
             // ARRAY of developers
             IEnumerable <Employee> developers = new Employee[]
             {
