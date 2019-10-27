@@ -17,13 +17,7 @@ namespace Queries
                  new Movie { Title = "Star Wars V", Rating = 8.7f, Year = 1980 }
             };
 
-            var query = movies.Filter(m => m.Year > 2000).ToList();
-
-            // Count() does not offer deferred excution: 
-            //   it forces the query to execute immediately
-            //   this results in duplication of work
-            Console.WriteLine($"Numer of rows returned by query: {query.Count()}{Newline}"); 
-
+            var query = movies.Where(m => m.Year > 2000);           
             var enumerator = query.GetEnumerator();
             while (enumerator.MoveNext())
             {
