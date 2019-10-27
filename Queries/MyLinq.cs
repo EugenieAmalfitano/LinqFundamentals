@@ -11,7 +11,7 @@ namespace Queries
             {
                 if(predicate(item))
                 {
-                    yield return item; // yield builds return as IEnumberable
+                    yield return item; // yield builds return only if predicate is true - same as Deferred Execution
                 }
             }
         }
