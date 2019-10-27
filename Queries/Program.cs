@@ -19,6 +19,11 @@ namespace Queries
 
             var query = movies.Filter(m => m.Year > 2000);
 
+            // Count() does not offer deferred excution: 
+            //   it forces the query to execute immediately
+            //   this results in duplication of work
+            Console.WriteLine($"Numer of rows returned by query: {query.Count()}{Newline}"); 
+
             var enumerator = query.GetEnumerator();
             while (enumerator.MoveNext())
             {
