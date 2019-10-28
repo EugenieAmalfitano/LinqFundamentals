@@ -34,6 +34,8 @@ namespace Cars
                             car.Name,
                             car.Combined
                         };
+            // Use Anonomous type with Lambda expression
+            var result = cars.Select(c => new { c.Manufacturer, c.Name, c.Combined });
 
             Console.WriteLine($"{"MAKE",-20}{ "MODEL",-25} Combined MPG");
             foreach (var car in query.Take(10))
