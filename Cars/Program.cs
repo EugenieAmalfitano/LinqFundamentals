@@ -23,7 +23,7 @@ namespace Cars
                         select car;
 
             Console.WriteLine($"{ "MODEL",-25} Combined MPG");
-            foreach (var car in query.Take(10))
+            foreach (var car in query.Take(10).Reverse())
             {
                 Console.WriteLine($"{ car.Name,-25} {car.Combined }");
             }
