@@ -12,22 +12,33 @@ namespace Cars
 
             // Find 10 most fuel efficient cars
             // Note: data was downloaded to Pluralsight class from http://fueleconomy.gov
-
-            //var query  = cars.OrderByDescending(c => c.Combined) // Combined fuel efficiency
-            //                 .ThenBy(c => c.Name);               // .ThenBy: secondary alpha sort when MPG is tied
-
-            // Use query syntax instead
+ 
+            // Use query syntax 
             var query =
                         from car in cars
+                        where car.Manufacturer == "BMW" && car.Year == 2016
                         orderby car.Combined descending, car.Name ascending
                         select car;
 
-            Console.WriteLine($"{ "MODEL",-25} Combined MPG");
-            foreach (var car in query.Take(10).Reverse())
+            Console.WriteLine($"{"MAKE",-20}{ "MODEL",-25} Combined MPG");
+            foreach (var car in query.Take(10))
             {
-                Console.WriteLine($"{ car.Name,-25} {car.Combined }");
+                Console.WriteLine($"{car.Manufacturer,-20}{ car.Name,-25} {car.Combined }");
             }
-        }
+
+
+            // Same as above, with Query Syntax
+            var query2 =
+                cars.Where(c => c.Manufacturer == "BMW" && c.Year == 2016)
+                    .OrderByDescending(c => c.Combined)
+                    .ThenBy(c => c.Name);
+
+            Console.WriteLine($"\n\nQuery Syntax\n{"MAKE",-20}{ "MODEL",-25} Combined MPG");
+            foreach (var car in query2.Take(10))
+            {
+                Console.WriteLine($"{car.Manufacturer,-20}{ car.Name,-25} {car.Combined }");
+            }
+        }           
 
         private static List<Car> ProcessFile(string path)
         {
