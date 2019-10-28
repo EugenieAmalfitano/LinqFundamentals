@@ -10,9 +10,19 @@ namespace Cars
         {
             var cars = ProcessFile("fuel.csv");
 
+            // ENUMERABLE ANY
+            // Are there any cars in the dataset?
+            var areThereCars = cars.Any();
+
+            // Are there any Fords
+            var areThereAnyFords = cars.Any(c => c.Manufacturer == "Ford");
+
+
+            // ENUMERABLE ALL
+            var areTheyAllFords = cars.All(c => c.Manufacturer == "Ford"); // Will return false since there are other manufacturers
+
             // Find 10 most fuel efficient cars
             // Note: data was downloaded to Pluralsight class from http://fueleconomy.gov
- 
             // Use query syntax 
             var query =
                         from car in cars
