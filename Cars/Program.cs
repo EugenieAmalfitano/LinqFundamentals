@@ -10,9 +10,15 @@ namespace Cars
         {
             var cars = ProcessFile("fuel.csv");
 
-            foreach (var car in cars)
+            // Find 10 most fuel efficient cars
+            // Note: data was downloaded to Pluralsight class from http://fueleconomy.gov
+
+            var query  = cars.OrderByDescending(c => c.Combined) // Combined fuel efficiency
+                             .ThenBy(c => c.Name);               // .ThenBy: secondary alpha sort when MPG is tied
+            Console.WriteLine($"{ "MODEL",-25} Combined MPG");
+            foreach (var car in query.Take(10))
             {
-                Console.WriteLine(car.Name);
+                Console.WriteLine($"{ car.Name,-25} {car.Combined }");
             }
         }
 
