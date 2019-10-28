@@ -13,8 +13,15 @@ namespace Cars
             // Find 10 most fuel efficient cars
             // Note: data was downloaded to Pluralsight class from http://fueleconomy.gov
 
-            var query  = cars.OrderByDescending(c => c.Combined) // Combined fuel efficiency
-                             .ThenBy(c => c.Name);               // .ThenBy: secondary alpha sort when MPG is tied
+            //var query  = cars.OrderByDescending(c => c.Combined) // Combined fuel efficiency
+            //                 .ThenBy(c => c.Name);               // .ThenBy: secondary alpha sort when MPG is tied
+
+            // Use query syntax instead
+            var query =
+                        from car in cars
+                        orderby car.Combined descending, car.Name ascending
+                        select car;
+
             Console.WriteLine($"{ "MODEL",-25} Combined MPG");
             foreach (var car in query.Take(10))
             {
