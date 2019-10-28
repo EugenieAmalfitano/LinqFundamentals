@@ -38,7 +38,27 @@ namespace Cars
             {
                 Console.WriteLine($"{car.Manufacturer,-20}{ car.Name,-25} {car.Combined }");
             }
-        }           
+
+            // Find the top fuel-efficient car
+            var top =
+                cars.Where(c => c.Manufacturer == "BMW" && c.Year == 2016)
+                    .OrderByDescending(c => c.Combined)
+                    .ThenBy(c => c.Name)
+                    .Select(c => c)
+                    .First();
+            Console.WriteLine($"\n\nSingle most fuel-efficient BMW from 2016\n{"MAKE",-20}{ "MODEL",-25} Combined MPG");
+            Console.WriteLine($"{top.Manufacturer,-20}{ top.Name,-25} {top.Combined }");
+
+            // Alternate method: Find the top fuel-efficient car
+            var top2 =
+                cars
+                    .OrderByDescending(c => c.Combined)
+                    .ThenBy(c => c.Name)
+                    .Select(c => c)
+                    .First(c => c.Manufacturer == "BMW" && c.Year == 2016);
+            Console.WriteLine($"\n\nAlternate method\n{"MAKE",-20}{ "MODEL",-25} Combined MPG");
+            Console.WriteLine($"{top2.Manufacturer,-20}{ top2.Name,-25} {top2.Combined }");
+        }
 
         private static List<Car> ProcessFile(string path)
         {
