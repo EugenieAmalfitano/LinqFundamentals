@@ -28,7 +28,12 @@ namespace Cars
                         from car in cars
                         where car.Manufacturer == "BMW" && car.Year == 2016
                         orderby car.Combined descending, car.Name ascending
-                        select car;
+                        select new //anonymous type
+                        {
+                            car.Manufacturer,
+                            car.Name,
+                            car.Combined
+                        };
 
             Console.WriteLine($"{"MAKE",-20}{ "MODEL",-25} Combined MPG");
             foreach (var car in query.Take(10))
