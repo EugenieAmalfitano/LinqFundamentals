@@ -72,21 +72,35 @@ namespace Cars
 
         private static List<Car> ProcessFile(string path)
         {
-            //return
-            //    File.ReadAllLines(path)
-            //        .Skip(1)
-            //        .Where(line => line.Length > 1)
-            //        .Select(Car.ParseFromCsv)
-            //        .ToList();
-
-
-            // Use query syntax instead
+            // Using projection operation to parse the car from the CSV file
             var query =
-                from line in File.ReadAllLines(path).Skip(1)
-                where line.Length > 1
-                select Car.ParseFromCsv(line);
-
+                File.ReadAllLines(path)
+                    .Skip(1)
+                    .Where(l => l.Length > 1) // filter out empty lines
+                    .ToCar();
             return query.ToList();
+        }
+    }
+    public static class CarExtensions
+    {
+        public static IEnumerable<Car> ToCar(this IEnumerable<string> source)
+        {
+            foreach (var line in source)
+            {
+                var columns = line.Split(',');
+
+                yield return new Car
+                {
+                    Year = int.Parse(columns[0]),
+                    Manufacturer = columns[1],
+                    Name = columns[2],
+                    Displacement = double.Parse(columns[3]),
+                    Cylinders = int.Parse(columns[4]),
+                    City = int.Parse(columns[5]),
+                    Highway = int.Parse(columns[6]),
+                    Combined = int.Parse(columns[7])
+                };
+            }
         }
     }
 }
