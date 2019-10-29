@@ -34,6 +34,20 @@ namespace Cars
                             car.Name,
                             car.Combined
                         };
+
+            // Use SelectMany to flatten a collection
+            // SelectMany projects each element of a sequence to an IEnumerable<T>, flattens the resulting sequences into one sequence, and invokes a result selector function on each element therein.
+            // This example finds individual characters within a cars projection, and sorts it. 
+
+            var SelectManyResult = cars.SelectMany(c => c.Name)
+                 .OrderBy(c => c);
+
+            foreach (var character in SelectManyResult)
+            {
+                Console.WriteLine(character);
+            }
+
+
             // Use Anonomous type with Lambda expression
             var result = cars.Select(c => new { c.Manufacturer, c.Name, c.Combined });
 
